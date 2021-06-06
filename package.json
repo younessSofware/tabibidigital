@@ -23,11 +23,8 @@
     "@angular/router": "~11.2.3",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@tensorflow/tfjs": "^3.6.0",
-    "@videogular/ngx-videogular": "^3.0.1",
     "animate.css": "^4.1.1",
-    "bootstrap": "^4.6.0",
-    "ngx-audio-player": "^11.0.4",
-    "ngx-bootstrap-slider": "^1.9.0",
+    "bootstrap": "^5.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

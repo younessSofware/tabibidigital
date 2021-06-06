@@ -31,8 +31,7 @@
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/animate.css/animate.min.css",
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/@videogular/ngx-videogular/fonts/videogular.css"
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
               "node_modules/@fortawesome/fontawesome-free/js/all.min.js"
