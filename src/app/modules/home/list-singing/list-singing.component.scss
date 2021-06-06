@@ -1,0 +1,18 @@
+.number_music{
+    font-size: 2rem;
+}
+.button--play {
+    height: 2.75rem;
+    width: 2.75rem;
+    border-radius: 100%;
+    display: inline-block;
+    border: 1px solid #d1d5d5;
+    cursor: pointer;
+}
+.parent_audio {
+    bottom: 0;
+    box-shadow: 0px 10px 5px #888, 0px -5px 5px rgb(223, 220, 220);
+}
+.card-hover:hover{
+    background-color: #fbfcfc;
+}

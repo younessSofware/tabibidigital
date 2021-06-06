@@ -1,0 +1,51 @@
+nav.header {
+    background-color: white;
+    box-shadow: 0 1px 5px 0 #aaaaaa;
+}
+.navbar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    border-radius: 0;
+    z-index: 1030;
+    margin-bottom: 0;
+}
+.navbar {
+    border-radius: 4px;
+}
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+* {
+    box-sizing: border-box;
+}
+nav {
+    display: block;
+}
+body {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #333333;
+    background-color: #fff;
+}
+.navbar:before, .navbar:after {
+    display: table;
+    content: " ";
+}
+*:before, *:after {
+    box-sizing: border-box;
+}
+.navbar:after {
+    clear: both;
+}
+.navbar:before, .navbar:after {
+    display: table;
+    content: " ";
+}
