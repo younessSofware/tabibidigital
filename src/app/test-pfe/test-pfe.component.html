@@ -1,3 +1,15 @@
-<h1>
-Hello
-</h1>
+
+<div class="input-group mb-3 p-5">
+    <label class="input-group-text" for="inputGroupFile01">Upload</label>
+    <input type="file" class="form-control" id="inputGroupFile01" (change)="uploadDone($event)">
+</div>
+<div class="d-flex justify-content-center mt-2">
+
+    <img [src]="uploadedImgs" id='target' [width]="uploadedImgs ? '200' : '' "/>
+</div>
+<div class="d-flex justify-content-center my-2" *ngIf="uploadedImgs">
+    <div *ngIf="!result" class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <h3> you have a type  {{ result }} </h3>
+</div>
