@@ -1,0 +1,234 @@
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">Tabibi </span>
+    </div>
+    <ul class="nav-links">
+        <li>          
+          <a  class="active">
+          <i class='bx bx-grid-alt' ></i>
+           <span class="links_name">Dashboard</span>
+          </a>
+
+
+
+        </li>
+        <li>
+          <a >
+            <i class='bx bx-box' ></i>
+            <span class="links_name">Les Patients</span>
+          </a>
+        </li>
+        <li>
+          <a >
+            <i class='bx bx-list-ul' ></i>
+            <span class="links_name">Pharmacie</span>
+          </a>
+        </li>
+        <li>
+          <a >
+            <i class='bx bx-pie-chart-alt-2' ></i>
+            <span class="links_name">Analytics</span>
+          </a>
+        </li>
+        <li>
+          <a>
+         <i class='bx bx-coin-stack' ></i>
+            <span class="links_name">Mon Profil</span>
+          </a>
+        </li>
+        <li>
+          <a >
+            <i class='bx bx-book-alt' ></i>
+            <span class="links_name">Ma biblio</span>
+          </a>
+        </li>
+        <li>
+          <a >
+            <i class='bx bx-user' ></i>
+            <span class="links_name">Team</span>
+          </a>
+        </li>
+        <li>
+          <a >
+            <i class='bx bx-message' ></i>
+            <span class="links_name">Messages</span>
+          </a>
+        </li>
+        <li>
+          <a >
+            <i class='bx bx-heart' ></i>
+            <span class="links_name">Enovations dommaine </span>
+          </a>
+        </li>
+        <li>
+          <a >
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Setting</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a>
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+    <a>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Dashboard</span>
+      </div>
+    </a>
+      <div class="profile-details">
+      <img src="../../../../assets/imgs/h1.jpg" alt="" >
+        <span class="admin_name">  Dr {{ user.nom}} </span>
+        <i class='bx bx-chevron-down' ></i>
+      </div>
+    </nav>
+<br><br><br><br><br>
+    <h1 class="text-center">le traitement sur Cancer de {{nomOfMalade}} </h1>
+ <br>
+<script type="text/javascript">
+$(document).ready(function(){
+ // Activate tooltip
+ $('[data-toggle="tooltip"]').tooltip();
+ 
+ // Select/Deselect checkboxes
+ var checkbox = $('table tbody input[type="checkbox"]');
+ $("#selectAll").click(function()
+ {
+  if(this.checked){
+   checkbox.each(function()
+   {
+    this.checked = true;                        
+   });
+  }
+  else
+  {
+   checkbox.each(function()
+   {
+    this.checked = false;                        
+   });
+  } 
+ });
+ checkbox.click(function()
+ {
+  if(!this.checked)
+  {
+   $("#selectAll").prop("checked", false);
+  }
+ });
+});
+</script>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+      <h2>Manage <b>les patients</b></h2>
+     </div>
+    
+</div>
+    </div>
+     <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+            <th>
+            <span class="custom-checkbox">
+                <!-- <input type="checkbox" id="selectAll">
+                <label for="selectAll"></label> -->
+            </span>
+            </th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+        </tr>
+      </thead>
+        <tbody>
+           <tr *ngFor="let patient of patients">
+              <td>
+                <span class="custom-checkbox">
+                    <input (click)="checkToggle(patient, $event.target)"
+                    [checked]="checkeds.includes(patient)" type="checkbox" id="checkbox1" name="options[]"
+                    value="1">
+                    <label for="checkbox1"></label>
+                </span>
+              </td>
+              <td>{{ patient.nom}} {{ patient.prenom}}</td>
+              <td> {{ patient.email }} </td>
+              <td> {{ patient.adresse }}</td>
+              <td> {{ patient.phone }}</td>
+           </tr>  
+        </tbody>
+    </table>
+        </div>
+    </div>
+ <!-- Edit Modal HTML -->
+    <div *ngFor="let image of this.list_images_selected; let index = index"
+    class="Neon Neon-theme-dragdropbox  d-flex justify-content-center">
+        <!-- <div class="Neon-input-dragDrop"> -->
+          <div class="card mb-3" style="max-width: 780px;position: relative">
+            <span class="text-danger cursor-pointer " (click)="this.prediction = undefined; this.list_images_selected = []"
+            style="position: absolute; right:0; font-size: 20px; height: 20px; width: 20px;">
+              <i class="far fa-window-close position-absolute p-0 m-0 bg-white" style="top:0"></i>
+            </span>
+            <div class="row g-0">
+              <div class="col-md-5">
+                <img [src]="image" [class.col-md-12]="this.prediction && this.prediction.porcentage" width="250">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body p-2" *ngIf="this.prediction && this.prediction.porcentage ">
+                  <h3 class="card-title">{{this.prediction.nom + ' ' + this.prediction.prenom }} </h3>
+                  <p class="card-text p-0 mb-0 pb-0" style="font-size: 20px;">La prediction est :
+                    <span class="text-danger"> <b> {{ this.prediction.porcentage | number:'1.1-2'}} % </b></span> </p>
+                  <p class="card-text pb-0 mb-0">
+                    La type de est  : {{ this.prediction.typeOfCellule}}
+                    <span class="text-danger"> <b> </b></span> </p>
+                  <p class="card-text mb-0 pb-0">L'etat  est  : <span class="text-danger">
+                    <b >{{ this.prediction.etat ? 'Normal' : 'Eleve'}}</b>
+                  </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- </div> -->
+    </div>
+    <div class="Neon Neon-theme-dragdropbox" *ngIf="!this.list_images_selected.length">
+      <input multiple (change)="imageSelected($event.target)" class="file" name="files[]" id="filer_input2" type="file">
+      <div class="Neon-input-dragDrop" style="max-width: 540px;"><div class="Neon-input-inner"><div class="Neon-input-icon"><i class="far fa-file-image"></i></div><div class="Neon-input-text"><h3>Drag&amp;Drop files here</h3> <span style="display:inline-block; margin: 15px 0">or</span></div>
+      <a class="Neon-input-choose-btn blue">Browse Files</a></div></div>
+    </div>
+      <section class="w-100 text-center bg-white p-3">
+        <button [disabled]="!(this.list_images_selected.length && checkeds.length)" (click)="lancerPrediction()"  type="button" class="btn btn-outline-success btn-lg py-3 m-3 px-4">Lancer Prediction</button>
+        <button (click)="downloadRapport()" [disabled]="!(this.prediction && checkeds.length)" type="button"  class="btn btn-outline-primary btn-lg py-3 m-3 px-4">Download Rapport</button>
+        <button (click)="creerOrdonnance()" [disabled]="!(this.prediction && checkeds.length)" type="button" class="btn btn-outline-success btn-lg py-3 m-3 px-4">Creer Ordonnance</button>
+        <button (click)="envoyerRapport()" [disabled]="!(this.prediction && checkeds.length)" type="button" class="btn btn-outline-primary btn-lg py-3 m-3 px-4">Envoyer le Rapport</button>
+      </section>
+  </section>
+  <app-pdf hidden style="opacity: 0; position: absolute;" *ngIf="download" [doctorName]="user.nom + ' ' + user.prenom"
+  [patientName]="this.checkeds[0].nom + ' ' +this.checkeds[0].prenom "
+  [etat]="this.prediction.etat" [maladeName]="nomOfMalade"></app-pdf>
+
+
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script>
+let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+ </script>

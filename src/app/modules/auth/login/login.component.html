@@ -1,0 +1,145 @@
+  <div class="ma-container" [ngClass]="startSignup ? '' : 'hidden-y'">
+    <div class="forms-container">
+      <div class="signin-signup" [ngClass]="startSignup ? 'top-70' : ''">
+        <form *ngIf="!usingCamera" class="sign-in-form">
+          <h2 class="title">Sign in</h2>
+          <a (click)="this.usingCamera = true"> <img src="../../../../assets/imgs/d2.png" class="sali" alt="Girl in a jacket" width="150" height="160"></a>
+  
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Username" name="email" #email/>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" name="password"  #password/>
+          </div>
+          <button type="button" class="btn solid"  (click)="this.login(email.value, password.value)">
+            <div class="spinner-border text-info" role="status" *ngIf="!loadingSignIn">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <span *ngIf="loadingSignIn">Login</span>
+          </button>
+          <p class="social-text">Or Sign in with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </form>
+        <form action="#" class="sign-up-form">
+          <h2 class="title">Sign up</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Nom"  #nom/>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Prenom"  #prenom/>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-briefcase-medical"></i>
+            <input type="specialisation" placeholder="Specialisation" #specialisation/>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-clinic-medical"></i>
+            <input type="nomClinique" placeholder="Nom de clinique" #nomClinique/>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-map-marker-alt"></i>
+            <input type="adresseClinique" placeholder="Adresse de clinique" #adresseClinique/>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email" #email2 />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" #pass2 />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Repeter le password" #pass2 />
+          </div>
+          <div onclick="document.getElementById('files').click()" class="input-field d-flex justify-content-center ">
+            <span *ngIf="!photos.length">
+              <i class="fas fa-plus"></i> 
+            </span>
+            <input   type="button" class="mx-2" [value]=" photos.length ? 'You choose ' + photos.length + ' images' : valueOfButton" />
+            <input type="file" id="files" (change)="selectFiles($event.target)" #files  hidden>
+          </div>
+          <div class="invalid-feedback text-center font-weight-bold" [ngClass]="err.length ? 'd-block' : ''" > {{err}}</div>
+          <button class="btn" type="button"
+          (click)="register(nom.value, prenom.value, email2.value, pass2.value,specialisation.value,nomClinique.value ,adresseClinique.value)" 
+          >
+          <div class="spinner-border text-info" role="status" *ngIf="!loading">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <span *ngIf="loading">Sign up</span>
+        </button>
+          <p class="social-text">Or Sign up with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </form>
+        <form action="#" *ngIf="usingCamera" class="sign-in-form">
+          <h2 class="title">Sign in</h2>         
+          <a > <img src="../../../../assets/imgs/d2.png" class="sali" alt="Girl in a jacket" width="150" height="160"></a>
+          <div class="gallery">
+            <img src="../../../../assets/imgs/1.jpg" id='img' height="308" width="400">
+          </div>
+          <button type="button"  class="btn solid" (click)="takeScreen('webcam')" >
+            Take Screen
+          </button>
+        </form>
+      </div>
+    </div>
+  
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>Le patient dans le cœur et l’excellence en tête
+          </h3>
+          <p>
+            <br>
+          </p>
+          <button (click)="startSignup = true" class="btn transparent" id="sign-up-btn">
+            Sign up
+          </button>
+        </div>
+        <img src="../../../../assets/imgs/log.svg" class="image" alt="" />
+      </div>
+      <div class="panel right-panel">
+        <div class="content">
+          <h3>Le patient dans le cœur et l’excellence en tête</h3>
+          <p>
+            
+          </p>
+          <button (click)="startSignup = false" class="btn transparent" id="sign-in-btn">
+            Sign in
+          </button>
+        </div>
+        <img src="../../../../assets/imgs/register.svg" class="image" alt="" />
+      </div>
+    </div>
+  </div>
+

@@ -38,9 +38,28 @@ export class PredictionsService {
       this.prepare_image(predParam, index).then(() => {     
         const output = this.model.predict(this.imgPreProcess);
         const predictions = Array.from(output.dataSync());
-        resolve(predictions)
+        resolve(this.reformulePrediction(predictions, type))
       })
       });
     });
+  }
+
+  reformulePrediction(predictions, type){
+    if(type.toLowerCase() == 'skin'){
+      if(predictions[0] < 0.5){
+        return {
+          typeOfCellule: 'Bengin',
+          porcentage: (predictions[0] * 100) / 0.5,
+          etat: true
+        }
+      }else{
+        console.log(((predictions[0] - 0.5) * 100)/0.5)
+        return {
+          typeOfCellule: 'malignant',
+          porcentage: (((predictions[0] - 0.5) * 100)) / 0.5,
+          etat: false
+        }
+      }
+    }  
   }
 }

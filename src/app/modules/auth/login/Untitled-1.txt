@@ -1,0 +1,1 @@
+<webcam [height]="308" [width]="400" #webcam></webcam>

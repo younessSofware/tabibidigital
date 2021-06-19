@@ -1,0 +1,165 @@
+<div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">Tabibi </span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#" class="active">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="patient.html">
+            <i class='bx bx-box' ></i>
+            <span class="links_name">Les Patients</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-list-ul' ></i>
+            <span class="links_name">Pharmacie</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-pie-chart-alt-2' ></i>
+            <span class="links_name">Analytics</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-coin-stack' ></i>
+            <span class="links_name">Mon Profil</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-book-alt' ></i>
+            <span class="links_name">Ma biblio</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-user' ></i>
+            <span class="links_name">Team</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="'/messages'">
+            <i class='bx bx-message' ></i>
+            <span class="links_name">Messages</span>
+          </a>
+        </li>
+        <li>
+          <a href="messager.html">
+            <i class='bx bx-heart' ></i>
+            <span class="links_name">Enovations dommaine </span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Setting</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a href="#">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Dashboard</span>
+      </div>
+      
+      <div class="profile-details">
+      <img src="../../../../assets/imgs/h1.jpg" alt="" >
+        <span class="admin_name">Dr {{ user.nom}} </span>
+        <i class='bx bx-chevron-down' ></i>
+      </div>
+    </nav>
+    <div class="home-content" >
+        <div id="container" class="w-auto row">
+            <aside class="col-4">
+                <header>
+                    <input type="text" placeholder="search">
+                </header>
+                <ul style="overflow: auto;">
+                    <li>
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="">
+                        <div>
+                            <h2>Prénom Nom</h2>
+                            <h3>
+                                <span class="status orange"></span>
+                                offline
+                            </h3>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_02.jpg" alt="">
+                        <div>
+                            <h2>Prénom Nom</h2>
+                            <h3>
+                                <span class="status green"></span>
+                                online
+                            </h3>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+            <main class="col-6 w-auto">
+                <header>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="">
+                    <div>
+                        <h2>Chat with Vincent Porter</h2>
+                        <h3>already 1902 messages</h3>
+                    </div>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_star.png" alt="">
+                </header>
+                <ul id="chat">
+                    <li [ngClass]="message.fromId == user._id ? 'me' : 'you'" *ngFor="let message of messages">
+                        <div class="entete">
+                             <span class="status mx-2" [ngClass]="message.fromId == user._id ? 'blue' : 'green'"></span>
+                            <h2 class="me-2">  {{ message.fromName   }}</h2>
+                            <h3>  {{ message.updatedAt.toString() | dateFormat}} </h3>
+                        </div>
+                        <div class="message">
+                            {{ message.subject }}
+                        </div>
+                    </li>
+                </ul>
+                <div *ngIf="filesSelected.length" style="bottom: 280px;" class="border-f2 border-top bg-white p-1 m-3 mx-4 position-absolute">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>           
+                    <div class="mt-2" *ngFor="let file of filesSelected; let index = index">
+                        <div *ngIf="file.name" class="d-flex mx-3 mb-1 align-items-center" (click)="deleteFile(index)">
+                          <span style="font-size: 40px;"><i class="fas fa-clipboard text-primary"></i></span>
+                          <div class="mx-3 overflow-hidden">
+                            <p class="m-0">{{file.name | Resume : 100}}</p>
+                            <span class="d-block">{{bytesToSize(file.size)}}</span>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="p-2">
+                    <div class="input-group p-3">
+                        <input #file type="file" hidden (change)="fiileSelected($event.target)">
+                        <span (click)="file.click()" class="input-group-append cursor-pointer" >
+                            <span style="background-color: #5e616a;border-radius: 20px 0px 0px 20px" class="cursor-pointer text-white input-group-text attach_btn px-3 py-4"><i class="fas fa-paperclip"></i></span>
+                        </span>
+                        <textarea #message style="background-color: #5e616a " class="form-control py-2 px-2 text-white" placeholder="type message..." aria-label="With textarea"></textarea>
+                        <span class="input-group-append cursor-pointer" (click)="envoyer(message)">
+                            <span style="background-color: #5e616a;border-radius: 0px 20px 20px 0px;" class="cursor-pointer text-white input-group-text send_btn px-3 py-4"><i class="fas fa-location-arrow"></i></span>
+                        </span>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+  
